@@ -1,0 +1,8 @@
+.phonebook {
+  background-color: rgb(94, 94, 99);
+  padding: 30px;
+}
+.title {
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 20px;
+}
