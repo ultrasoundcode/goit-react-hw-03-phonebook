@@ -25,4 +25,5 @@
 .field {
   height: 30px;
   margin-top: 10px;
+  outline: none;
 }
