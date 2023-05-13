@@ -3,17 +3,27 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import ContactsList from 'components/ContactsList/ContactsList';
 import FilterContact from 'components/FilterContact/FilterContact';
 import styles from './App.module.css';
+import { LOCALSTORAGE_KEY } from 'components/constants';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '4591256' },
-      { id: 'id-2', name: 'Hermione Kline', number: '4438912' },
-      { id: 'id-3', name: 'Eden Clements', number: '6451779' },
-      { id: 'id-4', name: 'Annie Copeland', number: '2279126' },
-    ],
+    contacts: [],
     filter: '',
   };
+  componentDidMount() {
+    const savedContacts = localStorage.getItem(LOCALSTORAGE_KEY);
+    if (savedContacts !== null) {
+      this.setState({ contacts: JSON.parse(savedContacts) });
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contact !== this.state.contacts) {
+      localStorage.setItem(
+        LOCALSTORAGE_KEY,
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
   addContact = newContact => {
     const normalizedFind = newContact.name.toLowerCase();
     const findName = this.state.contacts.find(

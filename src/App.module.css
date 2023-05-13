@@ -1,4 +1,8 @@
 .phonebook {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: rgb(94, 94, 99);
   padding: 30px;
 }
